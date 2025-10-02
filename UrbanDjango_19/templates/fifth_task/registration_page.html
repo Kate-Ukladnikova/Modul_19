@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--Домашнее задание по теме "Формы отправки -->
+<!--данных. HTML и Django формы"-->
+<!--Цель: понять на практике как работают POST запросы в Django. -->
+<!--Использовать формы для обработки этих запросов.-->
+<!--Задача "Имитация регистрации":-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+ <body>
+<!--    <h3 align="center"><u>{{ base_name}}</u></h3>-->
+<!--    <h5 align="center">{{ base_aim }}</h5>-->
+<!--    <h5 align="center">{{ base_student}}</h5>-->
+<!--    <h5 align="center">Дата: {{ base_time }}</h5>-->
+    <h2 align="center">{{ base_title }}</h2>
+    <b><a href="http://127.0.0.1:8000/">"Навигационная страница"</a><br><br>
+    <h1>Регистрация</h1>
+    <form method="post">
+       {% csrf_token %}
+       <b><label for="username">Введите логин:</label></b>
+       <b><input type="text" id="username" name="username" maxlength="30" required value={{username}}><br><br></b>
+
+       <b><label for="password">Введите пароль:</label></b>
+       <b><input type="password" id="password" name="password" minlength="8" required value={{password}}></b>
+
+       <b><label for="repeat_password">Повторите пароль:</label></b>
+       <b><input type="password" id="repeat_password" name="repeat_password" minlength="8" required value={{repeat_password}}><br><br></b>
+
+       <b><label for="age">Введите свой возраст:</label></b>
+       <b><input type="number" id="age" name="age" maxlength="3" required value={{age}}><br><br></b>
+       <button type="submit">Зарегистрироваться</button><br>
+       {% if message %}
+            <h3><p>{{ message }}</p></h3>
+       {% endif %}
+    </form>
+ </body>
+</html>
