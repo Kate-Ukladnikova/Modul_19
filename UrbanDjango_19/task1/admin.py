@@ -10,10 +10,10 @@ from task1.models import Buyer, Game
 
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('title', 'cost', 'size',)
+    list_display = ('title', 'cost', 'size', 'age_limited')
     # fields = [('title', 'cost'), 'description', 'size',]
     search_fields = ('title',)
-    list_filter = ('cost', 'size',)
+    list_filter = ('cost', 'size', 'age_limited',)
     fieldsets = (
         ('info', {
             'fields':
@@ -21,7 +21,7 @@ class GameAdmin(admin.ModelAdmin):
         }),
         ('footer', {
             'fields':
-                ('description', 'size')
+                ('description', 'size', 'age_limited',)
         }),
     )
     list_max_show_all = 20
