@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ base_title }}{% endblock %}
+{% block pagename %}{{ base_title }}{% endblock %}
+
+{% block content %}
+
+
+<!--    <hr>-->
+<!--    {% for new in news %}-->
+<!--        <h2>{{ new.title }}</h2>-->
+<!--        <br>-->
+<!--        {{ new.content }}-->
+<!--        <br>-->
+<!--        <small style="float: right; margin-right: 20px;">{{ new.date }}</small>-->
+<!--        <hr>-->
+<!--    {% endfor %}-->
+
+
+<!-- Навигация по страницам (пагинация) -->
+    {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigator">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <!-- Номера страниц -->
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Кнопка вперед -->
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+<!--   выводим объекты-->
+<!-- Сетка товаров -->
+
+    <div class="row">
+        {% for new in page_obj %}
+        <!-- Каждая карточка товара -->
+            <div class="col-md-4">
+                <h5>{{ new.title }}</h5>  <!-- Название события -->
+                <p>{{ new.content }}</p>  <!-- Описание события -->
+                <p>{{ new.date }}</p>  <!-- Дата-->
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

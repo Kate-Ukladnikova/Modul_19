@@ -8,10 +8,11 @@
 # Из Modul_18 task4 views
 
 from django.shortcuts import render
-from task1.models import Game, Buyer
+from task1.models import Game, Buyer, News
 from task1.forms import UserRegister
 from django.db import models
 from decimal import Decimal
+from django.core.paginator import Paginator
 
 
 menu = {'Навигационная страница': ["/"], 'Магазин': ["/games/"],
@@ -85,4 +86,12 @@ def sign_up_by_django(request):
         context['form'] = form
     return render(request, 'fifth_task/registration_page.html', context)
 
-
+#------------------------------
+# Домашнее задание по теме "Пагинация": добавить новую вкладку с
+# пагинацией в главном меню.
+def index(request):
+    news = News.objects.all().order_by('-date')
+    paginator = Paginator(news, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'six_task/news.html', {'page_obj': page_obj})

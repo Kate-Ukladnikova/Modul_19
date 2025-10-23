@@ -25,4 +25,5 @@ urlpatterns = [
     path('basket/', basket, name='Корзина'),  # Подключение маршрута task4: корзина
     path('django_sign_up/', sign_up_by_django),  # Подключение маршрутов task5
     path('menu/', get_menu, name='Главная страница'),
+    path('platform/news/', index), # Подключение маршрута task1 из Modul_19: вкладка с пагинацией
 ]

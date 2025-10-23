@@ -42,7 +42,6 @@
 # game = Game.objects.all()
 # print(game)
 
-
 from decimal import Decimal
 from django.db import models
 
@@ -63,6 +62,18 @@ class Game(models.Model):
     description = models.TextField()  # описание (неограниченное кол-во текста, поле необязательно для заполнения в формах и админке Django (может быть пустым))
     age_limited = models.BooleanField(default=False) # Поле, которое вычисляется автоматически на основе возраста
     buyer = models.ManyToManyField(Buyer, related_name='games')
+
+    def __str__(self):
+        return self.title
+
+#------------------------------
+# Домашнее задание по теме "Пагинация": добавить новую вкладку с
+# пагинацией в главном меню.
+
+class News(models.Model):
+    title = models.CharField(max_length=50)
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

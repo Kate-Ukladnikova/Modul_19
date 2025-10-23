@@ -1,12 +1,13 @@
 # Домашнее задание по теме "Сайт администрирования".
 
 from django.contrib import admin
-from task1.models import Buyer, Game
+from task1.models import Buyer, Game, News
 
 # Register your models here.
 
 # admin.site.register(Buyer)
 # admin.site.register(Game)
+admin.site.register(News)
 
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
