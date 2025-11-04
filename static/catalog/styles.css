@@ -1,0 +1,23 @@
+pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-info {
+    margin-bottom: 5px;
+}
+
+.pagination-controls a {
+    margin: 0 5px;
+    color: #333;
+}
+
+.pagination-controls a:hover {
+    color: #007bff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}

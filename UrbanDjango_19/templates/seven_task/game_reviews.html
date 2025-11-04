@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы о {{ game.title }}{% endblock %}
+
+{% block content %} 
+<h2>Отзывы о {{ game.title }}</h2>
+
+<!-- Список отзывов -->
+<div class="reviews">
+    {% for review in reviews %}
+    <div class="review">
+        <p><strong>{{ review.author }}</strong> ({{ review.rating }}/5)</p>
+        <p>{{ review.comment }}</p>
+        <p>{{ review.created_at|date:"d M Y H:i" }}</p>
+    </div>
+    <hr>
+    {% empty %}
+    <p>Пока нет отзывов. Будьте первым, кто оставит отзыв!</p>
+    {% endfor %}
+</div>
+
+<!-- Форма для добавления отзыва --> 
+<h3>Добавить отзыв</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Оставить отзыв</button>
+</form>
+{% endblock %}

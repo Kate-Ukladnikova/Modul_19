@@ -15,7 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from task1.views import *
+from task1.views import info, get_menu, games, basket, sign_up_by_django, index
+from task1.views import buyer_list_api, game_list_api, game_reviews, review_list
 from django.urls import path
 
 urlpatterns = [
@@ -26,4 +27,8 @@ urlpatterns = [
     path('django_sign_up/', sign_up_by_django),  # Подключение маршрутов task5
     path('menu/', get_menu, name='Главная страница'),
     path('platform/news/', index), # Подключение маршрута task1 из Modul_19: вкладка с пагинацией
+    path('api/buyers/', buyer_list_api, name='buyer_list_api'), # API для покупателей
+    path('api/games/', game_list_api, name='game_list_api'), # API для игр
+    path('api/games/<int:game_id>/reviews/', review_list, name='review_list'), # API для отзывов
+    path('games/<int:game_id>/reviews/', game_reviews, name='game_reviews'), # для отзывов
 ]
